@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class Search extends StatelessWidget {
@@ -77,44 +79,11 @@ class Search extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Your top genres ',
-                          style: TextStyle(
-                              fontSize: 20.0, fontFamily: 'SpotifyFont'),
-                        ),
-                        GridView.builder(
-                          itemCount: 1,
-                          gridDelegate:
-                              new SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2),
-                          shrinkWrap: true,
-                          controller: ScrollController(keepScrollOffset: false),
-                          itemBuilder: (BuildContext context, int index) {             
-                            return Padding(
-                              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                              child: Card(
-                          
-                                margin: EdgeInsets.symmetric(vertical: 10),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5)),
-                                clipBehavior: Clip.antiAlias,
-                                // child: Image.asset(
-                                //   'assets/genre.png',
-                                //   fit: BoxFit.contain,
-                                // ),
-                                child: Container(
-                                  height: 20,
-                                  color: Colors.green,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+                    padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    child: Wrap(
+                      spacing: 8.0,
+                      runSpacing: 4.0,
+                      children: items(9),
                     ),
                   ),
                 ],
@@ -136,4 +105,32 @@ Widget background() {
       ], begin: Alignment.topLeft, end: FractionalOffset(0.09, 0.3)),
     ),
   );
+}
+
+List<Widget> items(int qtd) {
+  List<Widget> list = [];
+  for (int i = 0; i < qtd; i++) {
+    var aux = Padding(
+      padding: EdgeInsets.all(5),
+      child: GestureDetector(
+        onTap: () {
+          log("tap in item");
+        },
+        child: Card(
+          margin: EdgeInsets.symmetric(vertical: 0.0),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          clipBehavior: Clip.antiAlias,
+          child: Image.asset(
+            'assets/genre.png',
+            fit: BoxFit.contain,
+            scale: 1.2,
+          ),
+        ),
+      ),
+    );
+
+    list.add(aux);
+  }
+  return list;
 }
