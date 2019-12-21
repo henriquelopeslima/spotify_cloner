@@ -75,7 +75,6 @@ flutter:
   assets:
     - assets/eminem.jpeg
     - assets/Billie.jpeg
-    - assets/darknet.jpeg
     - assets/Selection_004.png
     - assets/download.jpeg
     - assets/genre.png
